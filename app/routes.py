@@ -1,13 +1,10 @@
-from flask import render_template , request,redirect , url_for , flask
-from . import worker
-import database
-
+from flask import render_template , request,redirect , url_for,flask
+from app import app
+from app import worker
+from app import app
+from . import database
 
 app = Flask(__name__)
-
-db = database.Database()
-db.load_db()
-
 
 @app.route("/" , methods = ["GET" , "POST"])
 def index():
@@ -16,9 +13,8 @@ def index():
         return render_template("index.html" , code = "" , href = "")
 
     if request.method == 'POST':
-            code = database.Code()
-            code.data = request.form["data"]
-            db.save_code(code)
+            code=database.Cade()
+            cade.data=request.form["data"]
             return '{}'.format(name)
 
 
@@ -32,10 +28,7 @@ def code(id):
     else:
         return render_template("index.html" , code = "" , href = '')    
 
-    
+
 app.run()
-
-
-
 
 
